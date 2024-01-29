@@ -11,48 +11,46 @@ const options: swaggerJSDoc.Options = {
             title: "API Documentation for Blog API",
             description: "This is Fullstack Blog Project",
             version: '1',
-            // contact: {
-            //     name: "Thura Nyi",
-            //     email: "thuranyi64@gmail.com"
-            // }
+            contact: {
+                name: "Thura Nyi",
+                email: "thuranyi64@gmail.com"
+            }
         },
-        // servers: [
-        //     {
-        //         url: 'http://localhost:8888'
-        //     }
-        // ],
-        // components: {
-        //     securitySchemes: {
-        //         bearerAuth: {
-        //             type: "http",
-        //             scheme: "bearer",
-        //             bearerFormat: "JWT"
-        //         }
-        //     }
-        // }
+        servers: [
+            {
+                url: 'http://localhost:8888'
+            }
+        ],
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: "http",
+                    scheme: "bearer",
+                    bearerFormat: "JWT"
+                }
+            }
+        }
     },
     apis: [
-        './src/routes/*.ts', './src/schema/*.ts'
+       './src/routes/*.ts', './src/schema/*.ts'
     ]
 };
-
 const specs = swaggerJSDoc(options);
-
 export function swagger(app: Express) {
+
     
    // Serve Swagger UI assets
-app.use('/doc', swaggerUi.serve, swaggerUi.setup(specs));
+app.use('/doc',  swaggerUi.setup(specs));
 
-// Serve Swagger UI CSS explicitly
-app.get('/doc/swagger-ui.css', (req, res) => {
-  res.type('text/css');
-  swaggerUi.setup(specs);
-});
+// // Serve Swagger UI CSS explicitly
+// app.get('/doc/swagger-ui.css', (req, res) => {
+//   res.type('text/css');
+//   swaggerUi.setup(specs);
+// });
 
 // Serve Swagger JSON
 app.get('/doc.json', (req: Request, res: Response) => {
   res.setHeader('Content-Type', 'application/json');
-  res.setHeader('Cache-Control', 'no-store'); // Disable caching
   res.send(specs);
 });
 

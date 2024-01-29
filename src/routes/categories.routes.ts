@@ -4,37 +4,7 @@ import { ValidateResource } from './../middlewares/ValidateResource';
 import { GetAllCategoriesController, PostCategoryController } from '../controllers/categoryController';
 
 export function CategoriesRoute(app: Router) {
-    /**
-     * @openapi
-     *   /category:
-     *    post:
-     *     tags:
-     *      - Category
-     *     summary: Name category
-     *     description: will return category
-     *     requestBody:
-     *       required: true
-     *       content: 
-     *         multipart/form-data:
-     *            schema:
-     *              type: object
-     *              properties:
-     *               name:
-     *                 type: string
-     *     responses:
-     *         200:
-     *          description: Success
-     *          content:
-     *             application/json:
-     *                schema:
-     *                 type: object
-     *                 properties:
-     *                  name: 
-     *                    type: string
-     *         400:
-     *          description: Error
-     *          
-     */
+   
     //post category
     app.post('/category', ValidateResource(CreateCategorySchema), PostCategoryController);
     
