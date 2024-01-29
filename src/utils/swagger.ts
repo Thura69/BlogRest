@@ -18,7 +18,7 @@ const options: swaggerJSDoc.Options = {
         },
         servers: [
             {
-                url: 'http://localhost:8888'
+                url: 'https://main--blogrest.netlify.app/'
             }
         ],
         components: {
